@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Clock | Siddharath Codes</title>
+
+    <style>
+        /* ====== Basic Page Styling ====== */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #25272c;
+            color: white;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* Hide Scrollbar (for a clean centered layout) */
+        body::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* ====== Clock Container Styling ====== */
+        .container-clock {
+            border: 2px solid white;
+            padding: 20px 40px;
+            font-size: 48px;
+            display: flex;
+            border-radius: 20px;
+            background-color: rgba(255, 255, 255, 0.1);
+            text-align: center;
+            letter-spacing: 2px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- ====== Digital Clock Display ====== -->
+    <div class="container-clock">
+        <h1 class="digital-clock">00:00:00</h1>
+    </div>
+
+    <script>
+        /**
+         * Method 1: Using Arrow Function inside setInterval (short and modern)
+         *
+         * setInterval(() => {
+         *   const element = document.querySelector('.digital-clock');
+         *   const time = new Date();
+         *   const options = {
+         *       timeZone: 'Asia/Kathmandu',
+         *       hour: '2-digit',
+         *       minute: '2-digit',
+         *       second: '2-digit'
+         *   };
+         *   element.textContent = time.toLocaleTimeString('en-US', options);
+         * }, 1000);
+         */
+
+        /**
+         * Method 2: Using a separate function (cleaner and reusable)
+         */
+        function updateTime() {
+            const element = document.querySelector('.digital-clock'); // Select clock element
+            const time = new Date(); // Get current time
+
+            const options = {
+                timeZone: 'Asia/Kathmandu', // Set timezone to Nepal (Asia/Kathmandu)
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit'
+            };
+
+            // Convert time to readable format and display it
+            element.textContent = time.toLocaleTimeString('en-US', options);
+        }
+
+        // Run immediately once so it doesn’t wait for 1 second
+        updateTime();
+
+        // Update the time every 1000ms (1 second)
+        setInterval(updateTime, 1000);
+    </script>
+</body>
+
+</html>
